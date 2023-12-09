@@ -1,3 +1,6 @@
-arize-phoenix[experimental]
+#arize-phoenix[experimental]
 requests
 pandas
+laion-clap
+
+torchvision
