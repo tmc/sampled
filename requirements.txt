@@ -4,8 +4,12 @@
 #
 #    pip-compile requirements.in
 #
+anyio==4.1.0
+    # via starlette
 appdirs==1.4.4
     # via wandb
+arize-phoenix @ file:///Users/tmc/go/src/github.com/tmc/phoenix
+    # via -r requirements.in
 audioread==3.0.1
     # via librosa
 braceexpand==0.1.7
@@ -21,7 +25,13 @@ cffi==1.16.0
 charset-normalizer==3.3.2
     # via requests
 click==8.1.7
-    # via wandb
+    # via
+    #   uvicorn
+    #   wandb
+cython==0.29.36
+    # via hdbscan
+ddsketch==2.0.4
+    # via arize-phoenix
 decorator==5.1.1
     # via librosa
 docker-pycreds==0.4.0
@@ -41,19 +51,31 @@ gitdb==4.0.11
     # via gitpython
 gitpython==3.1.40
     # via wandb
+graphql-core==3.2.3
+    # via strawberry-graphql
+h11==0.14.0
+    # via uvicorn
 h5py==3.10.0
     # via laion-clap
+hdbscan==0.8.33
+    # via arize-phoenix
 huggingface-hub==0.19.4
     # via transformers
 idna==3.6
-    # via requests
+    # via
+    #   anyio
+    #   requests
 jinja2==3.1.2
-    # via torch
+    # via
+    #   arize-phoenix
+    #   torch
 joblib==1.3.2
     # via
+    #   hdbscan
     #   librosa
+    #   pynndescent
     #   scikit-learn
-laion-clap @ file:///Users/tmc/go/src/github.com/LAION-AI/CLAP
+laion-clap @ file:///Users/tmc/go/src/github.com/tmc/CLAP
     # via -r requirements.in
 lazy-loader==0.3
     # via librosa
@@ -65,6 +87,7 @@ llvmlite==0.41.1
     # via
     #   laion-clap
     #   numba
+    #   pynndescent
 markupsafe==2.1.3
     # via jinja2
 mpmath==1.3.0
@@ -74,20 +97,27 @@ msgpack==1.0.7
 networkx==3.2.1
     # via torch
 numba==0.58.1
-    # via librosa
+    # via
+    #   librosa
+    #   pynndescent
+    #   umap-learn
 numpy==1.23.5
     # via
+    #   arize-phoenix
     #   h5py
+    #   hdbscan
     #   laion-clap
     #   librosa
     #   numba
     #   pandas
+    #   pyarrow
     #   scikit-learn
     #   scipy
     #   soxr
     #   torchlibrosa
     #   torchvision
     #   transformers
+    #   umap-learn
     #   webdataset
 packaging==23.2
     # via
@@ -97,6 +127,7 @@ packaging==23.2
 pandas==2.1.4
     # via
     #   -r requirements.in
+    #   arize-phoenix
     #   laion-clap
 pillow==10.1.0
     # via torchvision
@@ -107,13 +138,24 @@ pooch==1.8.0
 progressbar==2.5
     # via laion-clap
 protobuf==4.25.1
-    # via wandb
+    # via
+    #   arize-phoenix
+    #   ddsketch
+    #   wandb
 psutil==5.9.6
-    # via wandb
+    # via
+    #   arize-phoenix
+    #   wandb
+pyarrow==14.0.1
+    # via arize-phoenix
 pycparser==2.21
     # via cffi
+pynndescent==0.5.11
+    # via umap-learn
 python-dateutil==2.8.2
-    # via pandas
+    # via
+    #   pandas
+    #   strawberry-graphql
 pytz==2023.3.post1
     # via pandas
 pyyaml==6.0.1
@@ -138,29 +180,46 @@ safetensors==0.4.1
     # via transformers
 scikit-learn==1.2.2
     # via
+    #   arize-phoenix
+    #   hdbscan
     #   laion-clap
     #   librosa
+    #   pynndescent
+    #   umap-learn
 scipy==1.11.4
     # via
+    #   arize-phoenix
+    #   hdbscan
     #   laion-clap
     #   librosa
+    #   pynndescent
     #   scikit-learn
+    #   umap-learn
 sentry-sdk==1.38.0
     # via wandb
 setproctitle==1.3.3
     # via wandb
 six==1.16.0
     # via
+    #   ddsketch
     #   docker-pycreds
     #   python-dateutil
 smmap==5.0.1
     # via gitdb
+sniffio==1.3.0
+    # via anyio
+sortedcontainers==2.4.0
+    # via arize-phoenix
 soundfile==0.12.1
     # via
     #   laion-clap
     #   librosa
 soxr==0.3.7
     # via librosa
+starlette==0.33.0
+    # via arize-phoenix
+strawberry-graphql==0.208.2
+    # via arize-phoenix
 sympy==1.12
     # via torch
 threadpoolctl==3.2.0
@@ -175,24 +234,32 @@ torchvision==0.16.1
     # via -r requirements.in
 tqdm==4.66.1
     # via
+    #   arize-phoenix
     #   huggingface-hub
     #   laion-clap
     #   transformers
+    #   umap-learn
 transformers==4.30.0
     # via
     #   -r requirements.in
     #   laion-clap
 typing-extensions==4.8.0
     # via
+    #   arize-phoenix
     #   huggingface-hub
     #   librosa
+    #   strawberry-graphql
     #   torch
 tzdata==2023.3
     # via pandas
+umap-learn==0.5.5
+    # via arize-phoenix
 urllib3==2.1.0
     # via
     #   requests
     #   sentry-sdk
+uvicorn==0.24.0.post1
+    # via arize-phoenix
 wandb==0.16.1
     # via laion-clap
 wcwidth==0.2.12
@@ -201,6 +268,8 @@ webdataset==0.2.86
     # via laion-clap
 wget==3.2
     # via laion-clap
+wrapt==1.16.0
+    # via arize-phoenix
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

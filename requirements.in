@@ -4,4 +4,5 @@ pandas
 
 torchvision
 transformers
-../../LAION-AI/CLAP
+../CLAP
+../phoenix

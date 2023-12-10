@@ -1,4 +1,3 @@
-print("1")
 # Import libraries.
 from dataclasses import replace
 import pandas as pd
@@ -14,12 +13,13 @@ samples_df["embedding"] = samples_df["embedding"].apply(lambda x: eval(x))
 
 # Define schemas that tell Phoenix which columns of your DataFrames correspond to features, predictions, actuals (i.e., ground truth), embeddings, etc.
 sample_schema = px.Schema(
-    # prediction_id_column_name="prediction_id",
+    prediction_id_column_name="id",
     # timestamp_column_name="prediction_ts",
     # prediction_label_column_name="predicted_action",
     # actual_label_column_name="actual_action",
     embedding_feature_column_names={
         "audio_embedding": px.EmbeddingColumnNames(
+            raw_data_column_name="filename",
             vector_column_name="embedding",
             link_to_data_column_name="filename",
         ),

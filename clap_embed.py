@@ -4,6 +4,7 @@ import numpy as np
 import librosa
 import torch
 import laion_clap
+import urllib.parse
 
 # quantization
 def int16_to_float32(x):
@@ -32,4 +33,8 @@ if __name__ == '__main__':
         for i, f in enumerate(files):
             e = list(embeddings[i])
             # print on one line:
+            # 'replace ~/Downloads/ with http://localhost:8080/'
+            f = str(e).replace('~/Downloads/','http://localhost:8080/')
+            # urlencode f
+            f = urllib.parse.quote_plus(f)
             fd.write(f'{i},{f},"{e}"\n')
