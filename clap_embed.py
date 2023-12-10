@@ -34,7 +34,7 @@ if __name__ == '__main__':
             e = list(embeddings[i])
             # print on one line:
             # 'replace ~/Downloads/ with http://localhost:8080/'
-            f = str(e).replace('~/Downloads/','http://localhost:8080/')
+            #f = str(e).replace('~/Downloads/','http://localhost:8080/')
             # urlencode f
-            f = urllib.parse.quote_plus(f)
+            #f = urllib.parse.quote_plus(f)
             fd.write(f'{i},{f},"{e}"\n')
