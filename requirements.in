@@ -1,6 +1,7 @@
 #arize-phoenix[experimental]
 requests
 pandas
-laion-clap
 
 torchvision
+transformers
+../../LAION-AI/CLAP

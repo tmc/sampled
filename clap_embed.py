@@ -1,3 +1,4 @@
+import os
 import sys
 import numpy as np
 import librosa
@@ -15,9 +16,20 @@ def float32_to_int16(x):
 model = laion_clap.CLAP_Module(enable_fusion=False)
 model.load_ckpt() # download the default pretrained checkpoint.
 
+
 def embed_files(audio_file_list):
+    print("file list:", audio_file_list)
     audio_embeddings = model.get_audio_embedding_from_filelist(x = audio_file_list, use_tensor=False)
+    return audio_embeddings
 
 if __name__ == '__main__':
-    embeddings = embed_files(sys.argv[1:])
-    print(embeddings)
+    files = sys.argv[1:]
+    files = [f for f in files if os.path.exists(f)]
+    embeddings = embed_files(files)
+    # append files to data/samples.csv
+    csv_file = 'data/samples.csv'
+    with open(csv_file,'a') as fd:
+        for i, f in enumerate(files):
+            e = list(embeddings[i])
+            # print on one line:
+            fd.write(f'{i},{f},"{e}"\n')
